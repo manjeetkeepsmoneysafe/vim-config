@@ -8,7 +8,8 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 require("plugins.trouble")
-require("plugins.alpha")
+require("plugins.indent-blankline")
+vim.g.indent_blankline_enabled = false
 vim.cmd.colorscheme("github_dark_high_contrast")
 
 --[[
