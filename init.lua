@@ -11,9 +11,44 @@ require("plugins.trouble")
 require("plugins.neorg")
 require("plugins.indent-blankline")
 require("plugins.disabled")
+vim.opt.cursorline = false
+vim.opt.cursorcolumn = false
 vim.g.indent_blankline_enabled = false
 vim.opt.laststatus = 0
-vim.cmd.colorscheme("github_dark_high_contrast")
+vim.cmd.colorscheme("rose-pine-moon")
+local harpoon = require("harpoon")
+
+-- REQUIRED
+harpoon:setup()
+-- REQUIRED
+
+vim.keymap.set("n", "<leader>a", function()
+    harpoon:list():add()
+end)
+vim.keymap.set("n", "<C-e>", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+
+vim.keymap.set("n", "<C-h>", function()
+    harpoon:list():select(1)
+end)
+vim.keymap.set("n", "<C-t>", function()
+    harpoon:list():select(2)
+end)
+vim.keymap.set("n", "<C-n>", function()
+    harpoon:list():select(3)
+end)
+vim.keymap.set("n", "<C-s>", function()
+    harpoon:list():select(4)
+end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function()
+    harpoon:list():prev()
+end)
+vim.keymap.set("n", "<C-S-N>", function()
+    harpoon:list():next()
+end)
 
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
